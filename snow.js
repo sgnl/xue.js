@@ -89,9 +89,9 @@ let snowModule = (function() {
       setTimeout(() => {
         requestAnimationFrame(this.frame.bind(this));
 
-        let newTopValue = parseInt(this.element.style.top) + randomBetween(0, 10);
+        let newTopValue = parseInt(this.element.style.top) + randomBetween(-2, 10);
 
-        let swayAmount = Math.floor(randomBetween(-15, 15)) + parseInt(this.element.style.left);
+        let swayAmount = Math.floor(randomBetween(-25, 25)) + parseInt(this.element.style.left);
         let swaySide = Math.floor(randomBetween(0, 1)) ? 'left' : 'right';
 
         let parentHeight = parseInt(this.element.parentNode.style.height);
