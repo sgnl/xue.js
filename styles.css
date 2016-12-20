@@ -1,0 +1,10 @@
+html, body {
+  height: 100%;
+  background-color: orange;
+}
+
+.snow-pixel {
+  height: 2px;
+  width: 2px;
+  background-color: #fff;
+}

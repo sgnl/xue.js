@@ -1,0 +1,1 @@
+snowModule.init('#snow-layer')
