@@ -3,8 +3,20 @@ html, body {
   background-color: orange;
 }
 
+.banner {
+  height: 100px;
+}
+
+.banner:nth-child(2) {
+  background-color: green;
+}
+
 .snow-pixel {
   height: 2px;
   width: 2px;
   background-color: #fff;
+}
+
+.spacer {
+
 }

@@ -1,7 +1,12 @@
 let snowModule = (function() {
+  /**
+   * Helper
+   */
+  const maybe = (probability) => !!probability && Math.random() <= probability;
+  const randomBetween = (min, max) => min + Math.random() * ( max + 1 - min);
 
   /**
-   * Classes
+   * Classes: Scene and SnowFlake
    */
   class Scene {
     constructor(containerElement) {
@@ -12,14 +17,15 @@ let snowModule = (function() {
       this._containerParentDefaultStyles();
 
       this.scene.addEventListener('snowenter', function() {
-        console.log('snow entering container!');
+        // console.log('snow entering container!');
       });
 
-      this.scene.addEventListener('snowleave', function() {
-        console.log('snow leaving container!');
+      this.scene.addEventListener('snowleave', (event) => {
+        let flakeOut = event.details;
+        this.snowFlakes = this.snowFlakes.filter(flake => flake === flakeOut);
       });
 
-      this.run();
+      this.frame();
     }
 
     _containerDefaultStyles() {
@@ -46,26 +52,27 @@ let snowModule = (function() {
       this.snowFlakes.push(newSnowFlake);
     }
 
-    run() {
-      // randomly
+    frame() {
       setTimeout(() => {
+        requestAnimationFrame(this.frame.bind(this));
         this.addSnowFlakeToScene();
-      }, 2000);
+      }, 800);
     }
   }
 
   class SnowFlake {
     constructor(scene) {
       this.scene = scene;
-      this.snowEnterEvent = new Event('snowenter');
-      this.snowLeaveEvent = new Event('snowleave');
       this.isFalling = false;
       this.element = document.createElement('div');
+
+      this.snowEnterEvent = new Event('snowenter');
+      this.snowLeaveEvent = new CustomEvent('snowleave', {detail: this});
 
       let styles = [
         'position: absolute',
         'top: 0',
-        'left: 10px',
+        `left: ${Math.floor(randomBetween(0, this.scene.parentNode.offsetWidth))}px`,
         'width: 4px',
         'height: 4px',
         'background-color: white',
@@ -75,29 +82,29 @@ let snowModule = (function() {
       this.element.setAttribute('style', styles);
       this.scene.appendChild(this.element);
       this.scene.dispatchEvent(this.snowEnterEvent);
-
-      this.interval = setInterval(() => {
-        this.fall();
-      }, 2000);
-
-      this.startFloatingDown();
+      this.frame();
     }
 
-    startFloatingDown() {
-      this.isFalling = true;
-    }
+    frame() {
+      setTimeout(() => {
+        requestAnimationFrame(this.frame.bind(this));
 
-    fall() {
-      let newTopValue = parseInt(this.element.style.top) + 25;
-      this.element.style.top = `${newTopValue}px`;
+        let newTopValue = parseInt(this.element.style.top) + randomBetween(0, 10);
 
-      let parentHeight = parseInt(this.element.parentNode.style.height);
+        let swayAmount = Math.floor(randomBetween(-15, 15)) + parseInt(this.element.style.left);
+        let swaySide = Math.floor(randomBetween(0, 1)) ? 'left' : 'right';
 
-      if (newTopValue > parentHeight) {
-        this.element.remove();
-        this.scene.dispatchEvent(this.snowLeaveEvent);
-        clearInterval(this.interval);
-      }
+        let parentHeight = parseInt(this.element.parentNode.style.height);
+
+        this.element.style.top = `${newTopValue}px`;
+        this.element.style[swaySide] = `${swayAmount}px`;
+
+        if (newTopValue > parentHeight) {
+          this.element.remove();
+          this.scene.dispatchEvent(this.snowLeaveEvent);
+          clearInterval(this.interval);
+        }
+      }, 1000 / 17);
     }
   }
 
@@ -105,12 +112,26 @@ let snowModule = (function() {
    * Module Methods
    */
 
-  function init(containerSelector) {
-    let container = document.querySelector(containerSelector);
+  function init({
+      selector = '#snow-layer',
+      density = 'normal'
+    } = {}) {
+    let container;
 
-    if (!container) throw Error('no container given.');
+    switch(true) {
+      case typeof selector === 'string':
+        new Scene(document.querySelector(selector), density);
+        break;
+      case Array.isArray(selector):
+        let containers = document.querySelectorAll(selector);
 
-    let scene = new Scene(container);
+        for (var i = containers.length - 1; i >= 0; i--) {
+          new Scene(containers[i], density);
+        }
+      default:
+        throw new Error('WHY ARE YOU SEEING THIS?!');
+        break;
+    }
   }
 
   // export
