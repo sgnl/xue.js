@@ -62,6 +62,7 @@ let snowModule = (function() {
 
   class SnowFlake {
     constructor(scene) {
+      this.rqf = null;
       this.scene = scene;
       this.isFalling = false;
       this.element = document.createElement('div');
@@ -87,7 +88,7 @@ let snowModule = (function() {
 
     frame() {
       setTimeout(() => {
-        requestAnimationFrame(this.frame.bind(this));
+        this.rqf = requestAnimationFrame(this.frame.bind(this));
 
         let newTopValue = parseInt(this.element.style.top) + randomBetween(-2, 10);
 
@@ -102,7 +103,7 @@ let snowModule = (function() {
         if (newTopValue > parentHeight) {
           this.element.remove();
           this.scene.dispatchEvent(this.snowLeaveEvent);
-          clearInterval(this.interval);
+          cancelAnimationFrame(this.rqf);
         }
       }, 1000 / 17);
     }
