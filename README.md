@@ -1,5 +1,5 @@
 
-# yuki.js
+# xue.js
 
 add a pixel snowflake effect to your DOM elements.
 
@@ -26,6 +26,9 @@ Xue.init({selector: '.banner-to-have-snowfall'});
 
 # Why
 why not
+
+**what does `xue` mean?**
+It's loosely "snow" in the Chinese language
 
 # Contribute
 PRs are welcomed
