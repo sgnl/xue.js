@@ -28,7 +28,7 @@
   },
   "scripts": {
     "build:dev": "webpack --config webpack.development.config.js",
-    "build:npm": "npm run clean-dist && npm run build:production && npm run build:dev",
+    "build": "npm run clean-dist && npm run build:production && npm run build:dev",
     "build:production": "webpack -p --config webpack.production.config.js",
     "clean-dist": "rimraf dist",
     "test": "xo"
