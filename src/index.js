@@ -2,7 +2,7 @@
   /**
    * Helper
    */
-  const maybe = (probability) => !!probability && Math.random() <= probability;
+  // const maybe = (probability) => !!probability && Math.random() <= probability;
   const randomBetween = (min, max) => min + Math.random() * ( max + 1 - min);
 
   /**
@@ -120,8 +120,6 @@
       density = 'normal',
       color = 'snow'
     } = {}) {
-    let container;
-
     switch(true) {
       case typeof selector === 'string':
         new Scene(document.querySelector(selector), color);
@@ -134,7 +132,6 @@
         }
       default:
         throw new Error('WHY ARE YOU SEEING THIS?!');
-        break;
     }
   }
 
