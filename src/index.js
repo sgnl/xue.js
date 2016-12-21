@@ -136,6 +136,6 @@
   }
 
   // export
-  window.letItSnow = {init};
+  window.Xue = {init};
   return window;
 })(window);
