@@ -1,32 +1,40 @@
 
 import Scene from './Scene';
 
-(function(window) {
-  /**
-   * Module Methods
-   */
+(function (window) {
+	const Scenes = [];
+	/**
+	 * Module Methods
+	 */
 
-  function init({
-      selector = '#snow-layer',
-      density = 'normal',
-      color = 'snow'
-    } = {}) {
-    switch(true) {
-      case typeof selector === 'string':
-        new Scene(document.querySelector(selector), color);
-        break;
-      case Array.isArray(selector):
-        let containers = document.querySelectorAll(selector);
+	function init({
+			selector = '#snow-layer',
+			density = 'normal',
+			color = 'snow'
+		} = {}) {
+		switch (true) {
+			case (typeof selector === 'string'): {
+				const newScene = new Scene(document.querySelector(selector), color);
+				Scenes.push(newScene);
+				break;
+			}
+			case Array.isArray(selector): {
+				const containers = document.querySelectorAll(selector);
 
-        for (var i = containers.length - 1; i >= 0; i--) {
-          new Scene(containers[i], density);
-        }
-      default:
-        throw new Error('WHY ARE YOU SEEING THIS?!');
-    }
-  }
+				let newScene;
+				for (let i = containers.length - 1; i >= 0; i--) {
+					newScene = new Scene(containers[i], density);
+					Scenes.push(newScene);
+				}
+				break;
+			}
+			default: {
+				throw new Error('WHY ARE YOU SEEING THIS?!');
+			}
+		}
+	}
 
-  // export
-  window.Xue = {init};
-  return window;
+	// export
+	window.Xue = {init};
+	return window;
 })(window);
