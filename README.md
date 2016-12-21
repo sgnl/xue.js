@@ -12,7 +12,10 @@ add a pixel snowflake effect to your DOM elements.
 - target individual elements to decorate your web page
 
 # Installation
-use files located in `dist/`
+
+- have yarn installed: [follow directions here][yarn_install_url]
+- clone and run `yarn install && npm run build:npm`
+- use files located in `dist/`
 
 # Usage
 
@@ -32,3 +35,5 @@ It's loosely "snow" in the Chinese language
 
 # Contribute
 PRs are welcomed
+
+[yarn_install_url]: https://yarnpkg.com/en/docs/install
