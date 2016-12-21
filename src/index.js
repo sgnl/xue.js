@@ -1,7 +1,7 @@
 
 import Scene from './scene';
 
-(function (window) {
+(function (window = {}) {
 	const Scenes = [];
 	/**
 	 * Module Methods
