@@ -1,7 +1,7 @@
 {
   "name": "xue.js",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/xue.min.js",
   "keywords": [
     "snow",
     "christmas",
