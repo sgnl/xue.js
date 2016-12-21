@@ -10,5 +10,6 @@ snowModule.init({
 
 snowModule.init({
   selector: '.container',
-  density: 'normal'
+  density: 'normal',
+  color: 'black'
 });

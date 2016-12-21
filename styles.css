@@ -1,10 +1,15 @@
 html, body {
   height: 100%;
   background-color: orange;
+  box-sizing: border-box;
 }
 
 .banner {
   height: 100px;
+}
+
+.banner:first-child {
+  background-color: blue;
 }
 
 .banner:nth-child(2) {

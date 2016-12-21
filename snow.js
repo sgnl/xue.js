@@ -9,20 +9,21 @@ let snowModule = (function() {
    * Classes: Scene and SnowFlake
    */
   class Scene {
-    constructor(containerElement) {
+    constructor(containerElement, color) {
       this.scene = containerElement;
-      this.snowFlakes = [];
+      this.snowflakeColor = color;
+      this.snowflakes = [];
 
       this._containerDefaultStyles();
       this._containerParentDefaultStyles();
 
-      this.scene.addEventListener('snowenter', function() {
-        // console.log('snow entering container!');
-      });
+      // this.scene.addEventListener('snowenter', function() {
+      //   // console.log('snow entering container!');
+      // });
 
       this.scene.addEventListener('snowleave', (event) => {
         let flakeOut = event.details;
-        this.snowFlakes = this.snowFlakes.filter(flake => flake === flakeOut);
+        this.snowflakes = this.snowflakes.filter(flake => flake === flakeOut);
       });
 
       this.frame();
@@ -48,8 +49,8 @@ let snowModule = (function() {
     }
 
     addSnowFlakeToScene() {
-      let newSnowFlake = new SnowFlake(this.scene);
-      this.snowFlakes.push(newSnowFlake);
+      let newSnowFlake = new SnowFlake(this.scene, this.snowflakeColor);
+      this.snowflakes.push(newSnowFlake);
     }
 
     frame() {
@@ -61,11 +62,12 @@ let snowModule = (function() {
   }
 
   class SnowFlake {
-    constructor(scene) {
+    constructor(scene, color) {
       this.rqf = null;
       this.scene = scene;
       this.isFalling = false;
       this.element = document.createElement('div');
+      this.color = color;
 
       this.snowEnterEvent = new Event('snowenter');
       this.snowLeaveEvent = new CustomEvent('snowleave', {detail: this});
@@ -76,7 +78,7 @@ let snowModule = (function() {
         `left: ${Math.floor(randomBetween(0, this.scene.parentNode.offsetWidth))}px`,
         'width: 4px',
         'height: 4px',
-        'background-color: white',
+        `background-color: ${this.color}`,
         'display: inline-block'
       ].join(';');
 
@@ -115,13 +117,14 @@ let snowModule = (function() {
 
   function init({
       selector = '#snow-layer',
-      density = 'normal'
+      density = 'normal',
+      color = 'snow'
     } = {}) {
     let container;
 
     switch(true) {
       case typeof selector === 'string':
-        new Scene(document.querySelector(selector), density);
+        new Scene(document.querySelector(selector), color);
         break;
       case Array.isArray(selector):
         let containers = document.querySelectorAll(selector);
@@ -136,7 +139,5 @@ let snowModule = (function() {
   }
 
   // export
-  return {
-    init
-  };
+  return {init};
 })();
