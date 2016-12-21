@@ -1,5 +1,5 @@
 
-import Scene from './Scene';
+import Scene from './scene';
 
 (function (window) {
 	const Scenes = [];

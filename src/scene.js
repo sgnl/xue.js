@@ -1,5 +1,5 @@
 
-import SnowFlake from './SnowFlake';
+import SnowFlake from './snowflake';
 
 export default class Scene {
 	constructor(containerElement, color) {
@@ -23,10 +23,10 @@ export default class Scene {
 	}
 
 	_containerDefaultStyles() {
-		let parentWidth = this.scene.parentNode.offsetWidth;
-		let parentHeight = this.scene.parentNode.offsetHeight;
+		const parentWidth = this.scene.parentNode.offsetWidth;
+		const parentHeight = this.scene.parentNode.offsetHeight;
 
-		let styles = [
+		const styles = [
 			'position: absolute',
 			'top:0',
 			'left:0',
@@ -42,7 +42,7 @@ export default class Scene {
 	}
 
 	addSnowFlakeToScene() {
-		let newSnowFlake = new SnowFlake(this.scene, this.snowflakeColor);
+		const newSnowFlake = new SnowFlake(this.scene, this.snowflakeColor);
 		this.snowflakes.push(newSnowFlake);
 	}
 
