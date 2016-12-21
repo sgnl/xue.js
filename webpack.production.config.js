@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'bundle.min.js',
+    filename: 'xue.min.js',
     path: './dist'
   },
   module: {
