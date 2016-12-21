@@ -25,9 +25,12 @@
     "webpack": "^1.14.0"
   },
   "scripts": {
-    "dev": "webpack --config webpack.development.config.js",
-    "build:": "npm run clean-dist && npm run production",
-    "production": "webpack -p --config webpack.production.config.js",
+    "build:dev": "webpack --config webpack.development.config.js",
+    "build:npm": "npm run clean-dist && npm run build:production & npm run build:dev",
+    "build:production": "webpack -p --config webpack.production.config.js",
     "clean-dist": "rimraf dist"
+  },
+  "dependencies": {
+    "rimraf": "^2.5.4"
   }
 }
