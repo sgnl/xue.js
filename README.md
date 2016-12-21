@@ -10,6 +10,7 @@ add a pixel snowflake effect to your DOM elements.
 - add pixel snow to any element on your webpage
 - target `body` to have it snow over your entire web page
 - target individual elements to decorate your web page
+- small! (4.11 kB)
 
 # Installation
 
