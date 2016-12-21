@@ -1,0 +1,11 @@
+{
+  "name": "let-it-snow",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:sgnl/pixelsnowjs.git",
+    "type": "git"
+  },
+  "author": "sgnl <rayrfarias@gmail.com>",
+  "license": "MIT"
+}
