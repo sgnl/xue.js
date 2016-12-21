@@ -1,0 +1,55 @@
+{
+  "name": "xue.js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [
+    "snow",
+    "christmas",
+    "front-end"
+  ],
+  "bugs": {
+    "url": "https://github.com/sgnl/xue.js/issues"
+  },
+  "repository": {
+    "url": "git@github.com:sgnl/xue.js.git",
+    "type": "git"
+  },
+  "homepage": "https://github.com/sgnl/xue.js",
+  "author": "Ray Farias <rayrfarias@gmail.com> (http://github.com/sgnl)",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "rimraf": "^2.5.4",
+    "webpack": "^1.14.0",
+    "xo": "^0.17.1"
+  },
+  "scripts": {
+    "build:dev": "webpack --config webpack.development.config.js",
+    "build": "npm run clean-dist && npm run build:production && npm run build:dev",
+    "build:production": "webpack -p --config webpack.production.config.js",
+    "clean-dist": "rimraf dist",
+    "test": "xo"
+  },
+  "dependencies": {
+    "rimraf": "^2.5.4"
+  },
+  "xo": {
+    "esnext": true,
+    "spaces": true,
+    "rules": {
+      "arrow-parens": 0
+    },
+    "globals": [
+      "window",
+      "document",
+      "Event",
+      "CustomEvent",
+      "requestAnimationFrame",
+      "cancelAnimationFrame",
+      "parseInt"
+    ]
+  }
+}
