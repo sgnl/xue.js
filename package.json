@@ -43,13 +43,15 @@
       "arrow-parens": 0
     },
     "globals": [
+      "Xue",
       "window",
       "document",
       "Event",
       "CustomEvent",
       "requestAnimationFrame",
       "cancelAnimationFrame",
-      "parseInt"
+      "parseInt",
+      "hljs"
     ]
   }
 }
