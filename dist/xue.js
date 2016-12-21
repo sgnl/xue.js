@@ -52,7 +52,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	(function (window) {
+	(function () {
+		var window = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
 		var Scenes = [];
 		/**
 	  * Module Methods
