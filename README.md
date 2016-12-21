@@ -14,7 +14,7 @@ add a pixel snowflake effect to your DOM elements.
 # Installation
 
 - have yarn installed: [follow directions here][yarn_install_url]
-- clone and run `yarn install && npm run build:npm`
+- clone and run `yarn install && npm run build`
 - use files located in `dist/`
 
 # Usage
