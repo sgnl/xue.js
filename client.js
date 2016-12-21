@@ -1,14 +1,14 @@
 
 'use strict';
 
-snowModule.init();
+letItSnow.init();
 
-snowModule.init({
+letItSnow.init({
   selector: '.spacer',
   density: 'normal'
 });
 
-snowModule.init({
+letItSnow.init({
   selector: '.container',
   density: 'normal',
   color: 'black'

@@ -1,4 +1,4 @@
-let snowModule = (function() {
+(function(window) {
   /**
    * Helper
    */
@@ -139,5 +139,6 @@ let snowModule = (function() {
   }
 
   // export
-  return {init};
-})();
+  window.letItSnow = {init};
+  return window;
+})(window);
